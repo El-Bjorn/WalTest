@@ -51,7 +51,7 @@
                     <navigationItem key="navigationItem" id="khM-7C-46w">
                         <nil key="title"/>
                         <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Search" textAlignment="natural" minimumFontSize="17" id="OAH-If-hXc">
-                            <rect key="frame" x="113" y="7" width="150" height="30"/>
+                            <rect key="frame" x="85" y="7" width="150" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -78,17 +78,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owW-kq-nyg">
-                                <rect key="frame" x="658" y="468" width="50.5" height="88"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="73"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OnT-17-cks">
+                                <rect key="frame" x="499.5" y="447" width="367.5" height="131"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="46" translatesAutoresizingMaskIntoConstraints="NO" id="3Gb-jY-3ZI">
+                                        <rect key="frame" x="0.0" y="0.0" width="367.5" height="87.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owW-kq-nyg">
+                                                <rect key="frame" x="0.0" y="0.0" width="148" height="87.5"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="73"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XG2-2e-zdC">
+                                                <rect key="frame" x="194" y="0.0" width="173.5" height="87.5"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="73"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Desc" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNU-Tk-uHY">
+                                        <rect key="frame" x="0.0" y="97.5" width="167.5" height="33.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="owW-kq-nyg" firstAttribute="centerX" secondItem="fnz-SS-so3" secondAttribute="centerX" id="AwF-wc-RiQ"/>
-                            <constraint firstItem="owW-kq-nyg" firstAttribute="centerY" secondItem="fnz-SS-so3" secondAttribute="centerY" id="jH9-kZ-gdr"/>
+                            <constraint firstItem="OnT-17-cks" firstAttribute="centerX" secondItem="fnz-SS-so3" secondAttribute="centerX" id="a9p-hB-eQG"/>
+                            <constraint firstItem="OnT-17-cks" firstAttribute="centerY" secondItem="fnz-SS-so3" secondAttribute="centerY" id="rna-aR-KYa"/>
                         </constraints>
                     </view>
                     <connections>
@@ -97,7 +119,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jqU-a0-rUf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2708" y="249.62518740629687"/>
+            <point key="canvasLocation" x="2707.9062957540264" y="249.60937499999997"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TEU-l8-Ief">
