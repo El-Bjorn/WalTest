@@ -10,6 +10,10 @@ import UIKit
 
 class ProdDetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var productImage: UIImageView!
+    @IBOutlet weak var prductDesc: UILabel!
+    @IBOutlet weak var productPrice: UILabel!
+    
     weak var ourProductServer:ProductServer?
     var currProduct:Product?
     
