@@ -11,7 +11,7 @@ import UIKit
 class ProdDetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var productImage: UIImageView!
-    @IBOutlet weak var prductDesc: UILabel!
+    @IBOutlet weak var productDesc: UILabel!
     @IBOutlet weak var productPrice: UILabel!
     
     weak var ourProductServer:ProductServer?
@@ -19,7 +19,11 @@ class ProdDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.titleLabel.text = "\(self.currProduct!.index)"
+        
+        self.titleLabel.text =  self.currProduct?.title
+        self.productImage.image = self.currProduct?.image
+        self.productDesc.text = self.currProduct?.desc
+        self.productPrice.text = self.currProduct?.price
         
         let rightSwipeRecog = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeRight(recognizer:)))
         rightSwipeRecog.direction = UISwipeGestureRecognizerDirection.right
@@ -29,13 +33,10 @@ class ProdDetailViewController: UIViewController {
         leftSwipeRecog.direction = UISwipeGestureRecognizerDirection.left
         self.view.addGestureRecognizer(leftSwipeRecog)
 
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func didSwipeRight(recognizer: UISwipeGestureRecognizer){
@@ -54,15 +55,4 @@ class ProdDetailViewController: UIViewController {
 
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

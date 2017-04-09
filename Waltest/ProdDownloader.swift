@@ -8,7 +8,7 @@
 
 import UIKit
 
-let pageSize = 3 //30
+let pageSize = 30
 fileprivate let apiKey = "d6e4b0f5-70f3-4baf-9137-c235eff0962d"
 fileprivate let baseURL = "https://walmartlabs-test.appspot.com/_ah/api/walmart/v1"
 
@@ -55,8 +55,15 @@ class ProdDownloader {
                             desc: (jp["shortDescription"] ?? "") as! String,
                             img: nil,
                             price: jp["price"] as! String)
-            // don't forget to grab the image
             newProducts.append(p)
+            // grab the image
+            let url = URL(string: jp["productImage"] as! String)
+            
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: url!) 
+                p.image = UIImage(data: data!)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: reloadSignalNotif), object: nil)
+            }
         }
         return newProducts
     }

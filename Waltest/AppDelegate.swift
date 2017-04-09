@@ -17,18 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        window?.tintColor = themeColor
-        
-        let pd = ProdDownloader()
-        //let netExpect = expectation(description: "netRequest")
-        
-        pd.downloadNextPage() { err, prods in
-            print(prods )
-            print("NETWORK BLOCK TEST")
-            //netExpect.fulfill()
-            
-        }
-
+        //window?.tintColor = themeColor
         
         return true
     }

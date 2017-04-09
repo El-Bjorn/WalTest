@@ -19,7 +19,7 @@ class Product {
     init(indx:Int?, title:String, desc:String, img:UIImage?, price:String) {
         self.index = indx
         self.title = title
-        self.desc = desc
+        self.desc = desc.replacingOccurrences(of:"<[^>]+>", with: "", options:.regularExpression, range: nil)
         self.image = img
         self.price = price
     }
@@ -27,6 +27,7 @@ class Product {
 }
 
 fileprivate let reuseId = "WalCell"
+let getMoreThreshold = 10
 
 class ProductServer : NSObject, UICollectionViewDataSource {
     // hidden so we can manage lazy loading
@@ -41,25 +42,45 @@ class ProductServer : NSObject, UICollectionViewDataSource {
     override init() {
         super.init()
         
-        // test data
-        for i in 0..<50 {
-            let newProd = Product(indx:i, title: "widget" ,desc:"some product",img:nil, price:"9.99")
-            
-            if let imagePath = Bundle.main.path(forResource: "testImage", ofType: "jpeg") {
-                if let image = UIImage(contentsOfFile: imagePath){
-                    newProd.image = image
+        let pd = ProdDownloader()
+        pd.downloadNextPage() { err, prods in
+            //print(prods)
+            if err == nil {
+                for (i,prod) in prods.enumerated() {
+                    prod.index = i
                 }
+                self.productArray.append(contentsOf: prods)
                 
             }
-            self.productArray.append(newProd)
         }
-        
     }
     // MARK: -
     // MARK: Product Data Methods
     
     // all requests come through here so we know when to download more stuff
     func getProductAtIndex(_ index:Int) -> Product? {
+        print("getting \(index)")
+        // see if we need to get more
+        if (numLoadedProducts-index) < getMoreThreshold {
+            let pd = ProdDownloader()
+            //self.ourProductVC?.startSpinner()
+
+            pd.downloadNextPage() { err, prods in
+                print(prods)
+                if err == nil {
+                    self.productArray.append(contentsOf: prods)
+                    for (i,prod) in self.productArray.enumerated() {
+                        if prod.index == nil {
+                            prod.index = i
+                        }
+                    }
+                    
+                }
+            }
+            
+
+        }
+        
         if index <= numLoadedProducts {
             return self.productArray[index]
         } else {
@@ -88,23 +109,6 @@ class ProductServer : NSObject, UICollectionViewDataSource {
             cell.productImage.image = ourProd?.image
         }
         
-        /*if let imagePath = Bundle.main.path(forResource: "testImage", ofType: "jpeg") {
-            if let image = UIImage(contentsOfFile: imagePath){
-                cell.productImage.image = image
-            }
-            
-        } */
-        
-        /*if let image = UIImage(named: "temp.png", in: Bundle(for: WalProdViewController.self), compatibleWith: nil){
-         cell.productImage.image = image
-         } */
-        /*if let prodImage = UIImage(named:"testImage.jpeg") {
-         cell.productImage.image = prodImage
-         } */
-        
-        
-        //cell.
-        // Configure the cell
         
         return cell
     }

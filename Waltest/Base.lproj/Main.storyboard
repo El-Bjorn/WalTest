@@ -71,33 +71,33 @@
                                 <rect key="frame" x="0.0" y="81" width="375" height="505"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testImage.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="V12-CU-gYs">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="374"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="381"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="250" constant="374" id="J27-SY-52q"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OnT-17-cks">
-                                        <rect key="frame" x="0.0" y="374" width="339" height="131"/>
+                                        <rect key="frame" x="0.0" y="381" width="375" height="124"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" preservesSuperviewLayoutMargins="YES" alignment="top" spacing="46" translatesAutoresizingMaskIntoConstraints="NO" id="3Gb-jY-3ZI">
-                                                <rect key="frame" x="51" y="0.0" width="237.5" height="49"/>
+                                                <rect key="frame" x="85.5" y="0.0" width="204" height="42"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owW-kq-nyg">
-                                                        <rect key="frame" x="0.0" y="0.0" width="95" height="49"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="46"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="73" height="42"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XG2-2e-zdC">
-                                                        <rect key="frame" x="141" y="0.0" width="96.5" height="48"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                        <rect key="frame" x="119" y="0.0" width="85" height="42"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Product Desc bla bla bla bla lskdfiownefkls blal o;i" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsFontForContentSizeCategory="YES" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="sNU-Tk-uHY">
-                                                <rect key="frame" x="0.0" y="59" width="339" height="72"/>
+                                                <rect key="frame" x="0.0" y="52" width="375" height="72"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="72" id="uw1-RA-oPY"/>
                                                 </constraints>
@@ -113,7 +113,6 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="wRh-eb-npP" secondAttribute="height" multiplier="75:101" id="2ui-ty-MJ3"/>
-                                    <constraint firstAttribute="trailing" secondItem="OnT-17-cks" secondAttribute="trailing" constant="36" id="gaL-CN-4RB"/>
                                     <constraint firstAttribute="trailing" secondItem="V12-CU-gYs" secondAttribute="trailing" id="w93-s3-jTh"/>
                                 </constraints>
                             </stackView>
@@ -128,7 +127,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="prductDesc" destination="sNU-Tk-uHY" id="EL2-5Y-r6n"/>
+                        <outlet property="productDesc" destination="sNU-Tk-uHY" id="FUL-iq-9zc"/>
                         <outlet property="productImage" destination="V12-CU-gYs" id="GIU-fg-kL2"/>
                         <outlet property="productPrice" destination="XG2-2e-zdC" id="hP6-Tp-AUg"/>
                         <outlet property="titleLabel" destination="owW-kq-nyg" id="bic-FT-ZT4"/>
