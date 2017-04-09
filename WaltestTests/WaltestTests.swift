@@ -21,6 +21,21 @@ class WaltestTests: XCTestCase {
         super.tearDown()
     }
     
+    func testProdDownloading() {
+        let pd = ProdDownloader()
+        let netExpect = expectation(description: "netRequest")
+        
+        pd.downloadNextPage() { err,prods in
+            print(prods)
+            print("UNIT TEST")
+            netExpect.fulfill()
+ 
+        }
+        waitForExpectations(timeout: 15) { (err) in
+            print("timeout")
+        }
+    }
+    
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.

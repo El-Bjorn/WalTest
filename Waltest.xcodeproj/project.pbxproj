@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		403374CF1E998AB70022946F /* ProdDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403374CE1E998AB70022946F /* ProdDownloader.swift */; };
+		403374D01E998AB70022946F /* ProdDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403374CE1E998AB70022946F /* ProdDownloader.swift */; };
+		403374D11E998F2B0022946F /* WalViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4056790B1E95702200FE8551 /* WalViewCell.swift */; };
 		405678D31E954E8F00FE8551 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405678D21E954E8F00FE8551 /* AppDelegate.swift */; };
 		405678D81E954E8F00FE8551 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 405678D61E954E8F00FE8551 /* Main.storyboard */; };
 		405678DA1E954E8F00FE8551 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 405678D91E954E8F00FE8551 /* Assets.xcassets */; };
@@ -40,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		403374CE1E998AB70022946F /* ProdDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProdDownloader.swift; sourceTree = "<group>"; };
 		405678CF1E954E8F00FE8551 /* Waltest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waltest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		405678D21E954E8F00FE8551 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		405678D71E954E8F00FE8551 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				405679121E95967900FE8551 /* ProductServer.swift */,
+				403374CE1E998AB70022946F /* ProdDownloader.swift */,
 			);
 			name = Model/Networking;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				405679131E95967900FE8551 /* ProductServer.swift in Sources */,
 				4056790C1E95702200FE8551 /* WalViewCell.swift in Sources */,
 				405678D31E954E8F00FE8551 /* AppDelegate.swift in Sources */,
+				403374CF1E998AB70022946F /* ProdDownloader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +324,8 @@
 			files = (
 				405679141E95967900FE8551 /* ProductServer.swift in Sources */,
 				405678E81E954E9000FE8551 /* WaltestTests.swift in Sources */,
+				403374D01E998AB70022946F /* ProdDownloader.swift in Sources */,
+				403374D11E998F2B0022946F /* WalViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +568,7 @@
 				405678F91E954E9100FE8551 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		405678FA1E954E9100FE8551 /* Build configuration list for PBXNativeTarget "WaltestTests" */ = {
 			isa = XCConfigurationList;
@@ -568,6 +577,7 @@
 				405678FC1E954E9100FE8551 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		405678FD1E954E9100FE8551 /* Build configuration list for PBXNativeTarget "WaltestUITests" */ = {
 			isa = XCConfigurationList;
@@ -576,6 +586,7 @@
 				405678FF1E954E9100FE8551 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

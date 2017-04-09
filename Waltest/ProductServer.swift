@@ -8,18 +8,22 @@
 
 import UIKit
 
-struct Product {
-    var index:Int // same as index in product array
-    var description:String
+// needs to be a reference type so we can fill in the image
+class Product {
+    var index:Int? // same as index in product array
+    var title:String
+    var desc:String
     var image:UIImage?
     var price:String
-    
-    init(indx:Int, desc:String, img:UIImage?, price:String) {
+        
+    init(indx:Int?, title:String, desc:String, img:UIImage?, price:String) {
         self.index = indx
-        self.description = desc
+        self.title = title
+        self.desc = desc
         self.image = img
         self.price = price
     }
+    
 }
 
 fileprivate let reuseId = "WalCell"
@@ -33,15 +37,13 @@ class ProductServer : NSObject, UICollectionViewDataSource {
             return self.productArray.count
         }
     }
-    let pageSize = 30
-    let apiKey = "d6e4b0f5-70f3-4baf-9137-c235eff0962d"
     
     override init() {
         super.init()
         
         // test data
         for i in 0..<50 {
-            var newProd = Product(indx:i,desc:"some product",img:nil, price:"9.99")
+            let newProd = Product(indx:i, title: "widget" ,desc:"some product",img:nil, price:"9.99")
             
             if let imagePath = Bundle.main.path(forResource: "testImage", ofType: "jpeg") {
                 if let image = UIImage(contentsOfFile: imagePath){
@@ -54,7 +56,9 @@ class ProductServer : NSObject, UICollectionViewDataSource {
         
     }
     // MARK: -
-    // MARK: Product detail methods
+    // MARK: Product Data Methods
+    
+    // all requests come through here so we know when to download more stuff
     func getProductAtIndex(_ index:Int) -> Product? {
         if index <= numLoadedProducts {
             return self.productArray[index]
@@ -79,9 +83,9 @@ class ProductServer : NSObject, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! WalViewCell
         //cell.backgroundColor = UIColor.black
         
-        let ourProd = productArray[indexPath.row]
-        if ourProd.image != nil {
-            cell.productImage.image = ourProd.image
+        let ourProd = getProductAtIndex(indexPath.row) //productArray[indexPath.row]
+        if ourProd?.image != nil {
+            cell.productImage.image = ourProd?.image
         }
         
         /*if let imagePath = Bundle.main.path(forResource: "testImage", ofType: "jpeg") {
