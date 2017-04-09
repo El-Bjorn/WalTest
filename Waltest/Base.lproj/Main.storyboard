@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -67,52 +66,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="wRh-eb-npP">
-                                <rect key="frame" x="0.0" y="81" width="375" height="505"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="wRh-eb-npP">
+                                <rect key="frame" x="0.0" y="72.5" width="375" height="522"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testImage.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="V12-CU-gYs">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="381"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="250" constant="374" id="J27-SY-52q"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OnT-17-cks">
-                                        <rect key="frame" x="0.0" y="381" width="375" height="124"/>
+                                        <rect key="frame" x="0.0" y="400" width="375" height="122"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" preservesSuperviewLayoutMargins="YES" alignment="top" spacing="46" translatesAutoresizingMaskIntoConstraints="NO" id="3Gb-jY-3ZI">
-                                                <rect key="frame" x="85.5" y="0.0" width="204" height="42"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owW-kq-nyg">
-                                                        <rect key="frame" x="0.0" y="0.0" width="73" height="42"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XG2-2e-zdC">
-                                                        <rect key="frame" x="119" y="0.0" width="85" height="42"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Product Desc bla bla bla bla lskdfiownefkls blal o;i" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsFontForContentSizeCategory="YES" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="sNU-Tk-uHY">
-                                                <rect key="frame" x="0.0" y="52" width="375" height="72"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XG2-2e-zdC">
+                                                <rect key="frame" x="145" y="0.0" width="85" height="42"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="72" id="uw1-RA-oPY"/>
+                                                    <constraint firstAttribute="height" constant="42" id="uS8-Hf-Irm"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Product Desc bla bla bla bla lskdfiownefkls blal o;i" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" minimumFontSize="11" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="sNU-Tk-uHY">
+                                                <rect key="frame" x="10" y="52" width="355" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="uw1-RA-oPY"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="sNU-Tk-uHY" firstAttribute="top" relation="lessThanOrEqual" secondItem="3Gb-jY-3ZI" secondAttribute="bottom" constant="10" id="egO-XK-mTH"/>
+                                            <constraint firstItem="sNU-Tk-uHY" firstAttribute="leading" secondItem="OnT-17-cks" secondAttribute="leading" constant="10" id="I7q-rr-LNl"/>
+                                            <constraint firstAttribute="trailing" secondItem="sNU-Tk-uHY" secondAttribute="trailing" constant="10" id="PtQ-TD-6fg"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="wRh-eb-npP" secondAttribute="height" multiplier="75:101" id="2ui-ty-MJ3"/>
+                                    <constraint firstItem="OnT-17-cks" firstAttribute="centerX" secondItem="wRh-eb-npP" secondAttribute="centerX" id="Qy6-dg-sMa"/>
                                     <constraint firstAttribute="trailing" secondItem="V12-CU-gYs" secondAttribute="trailing" id="w93-s3-jTh"/>
                                 </constraints>
                             </stackView>
@@ -130,7 +122,6 @@
                         <outlet property="productDesc" destination="sNU-Tk-uHY" id="FUL-iq-9zc"/>
                         <outlet property="productImage" destination="V12-CU-gYs" id="GIU-fg-kL2"/>
                         <outlet property="productPrice" destination="XG2-2e-zdC" id="hP6-Tp-AUg"/>
-                        <outlet property="titleLabel" destination="owW-kq-nyg" id="bic-FT-ZT4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jqU-a0-rUf" userLabel="First Responder" sceneMemberID="firstResponder"/>

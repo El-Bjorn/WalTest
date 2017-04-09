@@ -12,7 +12,7 @@ let pageSize = 30
 fileprivate let apiKey = "d6e4b0f5-70f3-4baf-9137-c235eff0962d"
 fileprivate let baseURL = "https://walmartlabs-test.appspot.com/_ah/api/walmart/v1"
 
-class ProdDownloader {
+final class ProdDownloader {
     private var lastPageDownloaded:Int = 0
     
     func downloadNextPage(compHandler: @escaping (Error?,[Product]) -> Void) {
@@ -20,7 +20,7 @@ class ProdDownloader {
         lastPageDownloaded += 1
         
         let urlStr = "\(baseURL)/walmartproducts/\(apiKey)/\(lastPageDownloaded)/\(pageSize)"
-        print("url=\(urlStr)")
+        //print("url=\(urlStr)")
         let reqUrl = URL(string: urlStr)
         // urlSession
         let defSession = URLSession(configuration:URLSessionConfiguration.default)

@@ -29,9 +29,10 @@ class Product {
 fileprivate let reuseId = "WalCell"
 let getMoreThreshold = 10
 
-class ProductServer : NSObject, UICollectionViewDataSource {
-    // hidden so we can manage lazy loading
+final class ProductServer : NSObject, UICollectionViewDataSource {
+    // not accessed directly so we can manage lazy loading
     private var productArray:[Product] = []
+    var wpc:WalProdViewController?
     
     var numLoadedProducts: Int {
         get {
@@ -43,8 +44,10 @@ class ProductServer : NSObject, UICollectionViewDataSource {
         super.init()
         
         let pd = ProdDownloader()
+        wpc?.startSpinner()
         pd.downloadNextPage() { err, prods in
             //print(prods)
+            self.wpc?.stopSpinner()
             if err == nil {
                 for (i,prod) in prods.enumerated() {
                     prod.index = i
@@ -59,14 +62,13 @@ class ProductServer : NSObject, UICollectionViewDataSource {
     
     // all requests come through here so we know when to download more stuff
     func getProductAtIndex(_ index:Int) -> Product? {
-        print("getting \(index)")
+        //print("getting \(index)")
         // see if we need to get more
         if (numLoadedProducts-index) < getMoreThreshold {
             let pd = ProdDownloader()
-            //self.ourProductVC?.startSpinner()
-
+            wpc!.startSpinner()
             pd.downloadNextPage() { err, prods in
-                print(prods)
+                self.wpc?.stopSpinner()
                 if err == nil {
                     self.productArray.append(contentsOf: prods)
                     for (i,prod) in self.productArray.enumerated() {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WalViewCell: UICollectionViewCell {
+final class WalViewCell: UICollectionViewCell {
     
     @IBOutlet weak var productImage: UIImageView!
     

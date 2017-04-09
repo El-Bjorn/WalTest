@@ -20,9 +20,9 @@ class ProdDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.titleLabel.text =  self.currProduct?.title
+        //self.titleLabel.text =  self.currProduct?.title
         self.productImage.image = self.currProduct?.image
-        self.productDesc.text = self.currProduct?.desc
+        self.productDesc.text = self.currProduct?.title
         self.productPrice.text = self.currProduct?.price
         
         let rightSwipeRecog = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeRight(recognizer:)))
@@ -40,12 +40,12 @@ class ProdDetailViewController: UIViewController {
     }
     
     func didSwipeRight(recognizer: UISwipeGestureRecognizer){
-        print("did swipe right")
+        //print("did swipe right")
         self.navigationController!.popViewController(animated: true)
     }
     
     func didSwipeLeft(recognizer: UISwipeGestureRecognizer){
-        print("did swipe left")
+        //print("did swipe left")
         if (self.currProduct?.index)! < (self.ourProductServer?.numLoadedProducts)! {
             let detailVC = self.storyboard!.instantiateViewController(withIdentifier: "ProdDetailView") as! ProdDetailViewController
             detailVC.ourProductServer = self.ourProductServer

@@ -12,13 +12,13 @@ let reloadSignalNotif = "CollViewReloadNotif"
 
 final class WalProdViewController: UICollectionViewController {
     
-    //fileprivate let reuseIdentifier = "Walcell"
-    fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     let ourProdServer = ProductServer()
     let spinner = UIActivityIndicatorView()
     
     func startSpinner() {
-        self.spinner.startAnimating()
+        if !self.spinner.isAnimating {
+            self.spinner.startAnimating()
+        }
     }
     func stopSpinner() {
         self.spinner.stopAnimating()
@@ -28,10 +28,14 @@ final class WalProdViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ourProdServer.wpc = self
+        
+        // activity indicator
         self.spinner.hidesWhenStopped = true
-        self.spinner.activityIndicatorViewStyle = .gray
-        self.spinner.center = (self.collectionView?.center)!
-        self.collectionView?.addSubview(self.spinner)
+        self.spinner.activityIndicatorViewStyle = .gray //.whiteLarge
+        //self.spinner.center = (self.collectionView?.center)!
+        self.spinner.center = self.view.center
+        self.view?.addSubview(self.spinner)
 
         
         // set delegate for product server
@@ -40,12 +44,15 @@ final class WalProdViewController: UICollectionViewController {
         // register for collectionview reloads
         let nc = NotificationCenter.default
         nc.addObserver(forName: NSNotification.Name(rawValue: reloadSignalNotif), object: nil, queue:nil) { (notif) in
-            print("GOT RELOAD NOTIF")
+            //print("GOT RELOAD NOTIF")
             DispatchQueue.main.async {
                 self.collectionView?.reloadData()
             }
         }
-        
+    }
+    
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        self.spinner.center = self.view.center
     }
     
     func doCollectionViewReload() {
@@ -60,15 +67,12 @@ final class WalProdViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        startSpinner()
         let detailVC = self.storyboard!.instantiateViewController(withIdentifier: "ProdDetailView") as! ProdDetailViewController
         detailVC.ourProductServer = self.ourProdServer
         detailVC.currProduct = self.ourProdServer.getProductAtIndex(indexPath.row)
         self.navigationController!.pushViewController(detailVC, animated: true)
-        //self.performSegue(withIdentifier: "ProductDetail", sender: nil)
+        stopSpinner()
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let targetVC = segue.destination as! ProdDetailViewController
-        targetVC.ourProductServer = self.ourProdServer
-    }
 }
