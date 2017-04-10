@@ -8,7 +8,8 @@
 
 import UIKit
 
-// needs to be a reference type so we can fill in the image
+// I would have used struct but this needs to be a 
+//    reference type so we can fetch in the image in the background
 class Product {
     var index:Int? // same as index in product array
     var title:String

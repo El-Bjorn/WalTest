@@ -108,8 +108,8 @@
 		405678D11E954E8F00FE8551 /* Waltest */ = {
 			isa = PBXGroup;
 			children = (
-				405679161E95A3F000FE8551 /* Product Detail */,
 				405679151E95A3A500FE8551 /* Collection View */,
+				405679161E95A3F000FE8551 /* Product Detail */,
 				405679111E95963800FE8551 /* Model/Networking */,
 				405678D21E954E8F00FE8551 /* AppDelegate.swift */,
 				405678D61E954E8F00FE8551 /* Main.storyboard */,
@@ -459,6 +459,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UW2GS3TVL4;
 				INFOPLIST_FILE = Waltest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -16,7 +16,6 @@ final class ProdDownloader {
     private var lastPageDownloaded:Int = 0
     
     func downloadNextPage(compHandler: @escaping (Error?,[Product]) -> Void) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         lastPageDownloaded += 1
         
         let urlStr = "\(baseURL)/walmartproducts/\(apiKey)/\(lastPageDownloaded)/\(pageSize)"
@@ -42,7 +41,6 @@ final class ProdDownloader {
             // data looks good
             let prodArray = self.productsFromJsonDict(jsonDict)
             compHandler(nil,prodArray)
-            //print("resp= \(resp)")
         }
         dataTask.resume()
     }
@@ -58,13 +56,15 @@ final class ProdDownloader {
             newProducts.append(p)
             // grab the image
             let url = URL(string: jp["productImage"] as! String)
-            
-            DispatchQueue.global().async {
-                let data = try? Data(contentsOf: url!) 
+            DispatchQueue.global(qos: .background).async {
+                let data = try? Data(contentsOf: url!)
                 p.image = UIImage(data: data!)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: reloadSignalNotif), object: nil)
             }
-        }
+
+            }
+            //DispatchQueue.main.async {
+        //}
         return newProducts
     }
     

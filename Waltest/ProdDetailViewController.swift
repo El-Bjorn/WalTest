@@ -45,7 +45,7 @@ class ProdDetailViewController: UIViewController {
     }
     
     func didSwipeLeft(recognizer: UISwipeGestureRecognizer){
-        //print("did swipe left")
+        print("did swipe left")
         if (self.currProduct?.index)! < (self.ourProductServer?.numLoadedProducts)! {
             let detailVC = self.storyboard!.instantiateViewController(withIdentifier: "ProdDetailView") as! ProdDetailViewController
             detailVC.ourProductServer = self.ourProductServer
