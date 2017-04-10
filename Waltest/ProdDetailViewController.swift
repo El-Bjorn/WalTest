@@ -45,12 +45,14 @@ class ProdDetailViewController: UIViewController {
     }
     
     func didSwipeLeft(recognizer: UISwipeGestureRecognizer){
-        print("did swipe left")
-        if (self.currProduct?.index)! < (self.ourProductServer?.numLoadedProducts)! {
+        //print("did swipe left")
+        if ((self.currProduct?.index)!+1) < (self.ourProductServer?.numLoadedProducts)! {
             let detailVC = self.storyboard!.instantiateViewController(withIdentifier: "ProdDetailView") as! ProdDetailViewController
             detailVC.ourProductServer = self.ourProductServer
             detailVC.currProduct = self.ourProductServer?.getProductAtIndex((self.currProduct?.index)!+1)
             self.navigationController!.pushViewController(detailVC, animated: true)
+        } else {
+            //print("can't load that yet")
         }
 
     }

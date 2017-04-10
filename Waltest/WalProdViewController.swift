@@ -43,7 +43,7 @@ final class WalProdViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("got collectionview tap")
+        //print("got collectionview tap")
         let detailVC = self.storyboard!.instantiateViewController(withIdentifier: "ProdDetailView") as! ProdDetailViewController
         detailVC.ourProductServer = self.ourProdServer
         detailVC.currProduct = self.ourProdServer.getProductAtIndex(indexPath.row)
