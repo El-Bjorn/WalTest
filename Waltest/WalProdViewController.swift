@@ -13,30 +13,10 @@ let reloadSignalNotif = "CollViewReloadNotif"
 final class WalProdViewController: UICollectionViewController {
     
     let ourProdServer = ProductServer()
-    let spinner = UIActivityIndicatorView()
-    
-    func startSpinner() {
-        if !self.spinner.isAnimating {
-            self.spinner.startAnimating()
-        }
-    }
-    func stopSpinner() {
-        self.spinner.stopAnimating()
-    }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ourProdServer.wpc = self
-        
-        // activity indicator
-        self.spinner.hidesWhenStopped = true
-        self.spinner.activityIndicatorViewStyle = .gray //.whiteLarge
-        //self.spinner.center = (self.collectionView?.center)!
-        self.spinner.center = self.view.center
-        self.view?.addSubview(self.spinner)
-
         
         // set delegate for product server
         self.collectionView?.dataSource = ourProdServer
@@ -51,10 +31,6 @@ final class WalProdViewController: UICollectionViewController {
         }
     }
     
-    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-        self.spinner.center = self.view.center
-    }
-    
     func doCollectionViewReload() {
         self.collectionView?.reloadData()
     }
@@ -67,12 +43,11 @@ final class WalProdViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        startSpinner()
+        print("got collectionview tap")
         let detailVC = self.storyboard!.instantiateViewController(withIdentifier: "ProdDetailView") as! ProdDetailViewController
         detailVC.ourProductServer = self.ourProdServer
         detailVC.currProduct = self.ourProdServer.getProductAtIndex(indexPath.row)
         self.navigationController!.pushViewController(detailVC, animated: true)
-        stopSpinner()
     }
 
 }

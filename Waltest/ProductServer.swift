@@ -33,7 +33,6 @@ let getMoreThreshold = 10
 final class ProductServer : NSObject, UICollectionViewDataSource {
     // not accessed directly so we can manage lazy loading
     private var productArray:[Product] = []
-    var wpc:WalProdViewController?
     
     var numLoadedProducts: Int {
         get {
@@ -44,18 +43,20 @@ final class ProductServer : NSObject, UICollectionViewDataSource {
     override init() {
         super.init()
         
-        let pd = ProdDownloader()
-        wpc?.startSpinner()
-        pd.downloadNextPage() { err, prods in
-            //print(prods)
-            self.wpc?.stopSpinner()
-            if err == nil {
-                for (i,prod) in prods.enumerated() {
-                    prod.index = i
+        DispatchQueue.global(qos: .background).async {
+            let pd = ProdDownloader()
+            pd.downloadNextPage() { err, prods in
+                if err == nil {
+                    for (i,prod) in prods.enumerated() {
+                        prod.index = i
+                    }
+                    objc_sync_enter(self.productArray)
+                    self.productArray.append(contentsOf: prods)
+                    objc_sync_exit(self.productArray)
+                    
                 }
-                self.productArray.append(contentsOf: prods)
-                
             }
+
         }
     }
     // MARK: -
@@ -66,22 +67,21 @@ final class ProductServer : NSObject, UICollectionViewDataSource {
         //print("getting \(index)")
         // see if we need to get more
         if (numLoadedProducts-index) < getMoreThreshold {
-            let pd = ProdDownloader()
-            wpc!.startSpinner()
-            pd.downloadNextPage() { err, prods in
-                self.wpc?.stopSpinner()
-                if err == nil {
-                    self.productArray.append(contentsOf: prods)
-                    for (i,prod) in self.productArray.enumerated() {
-                        if prod.index == nil {
-                            prod.index = i
+            DispatchQueue.global(qos: .background).async {
+                let pd = ProdDownloader()
+                    pd.downloadNextPage() { err, prods in
+                        // add the indexes
+                        for (i,prod) in prods.enumerated() {
+                        prod.index = i+self.numLoadedProducts
+                        }
+                        if err == nil {
+                            objc_sync_enter(self.productArray)
+                            self.productArray.append(contentsOf: prods)
+                            objc_sync_exit(self.productArray)
                         }
                     }
-                    
-                }
-            }
-            
 
+            }
         }
         
         if index <= numLoadedProducts {
@@ -105,9 +105,10 @@ final class ProductServer : NSObject, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! WalViewCell
-        //cell.backgroundColor = UIColor.black
+        // clear old images
+        cell.productImage.image = nil
         
-        let ourProd = getProductAtIndex(indexPath.row) //productArray[indexPath.row]
+        let ourProd = getProductAtIndex(indexPath.row)
         if ourProd?.image != nil {
             cell.productImage.image = ourProd?.image
         }
