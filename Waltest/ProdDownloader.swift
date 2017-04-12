@@ -12,8 +12,39 @@ let pageSize = 30
 fileprivate let apiKey = "d6e4b0f5-70f3-4baf-9137-c235eff0962d"
 fileprivate let baseURL = "https://walmartlabs-test.appspot.com/_ah/api/walmart/v1"
 
+class ImgDownloader: Operation {
+    let ourProd: Product
+    let ourURL: URL
+    
+    init(prod: Product, imgUrl: URL){
+        self.ourProd = prod
+        self.ourURL = imgUrl
+    }
+    
+    override var isAsynchronous: Bool {
+        return true
+    }
+    
+    override func main() {
+        if self.isCancelled {
+            return
+        }
+        let data = try? Data(contentsOf: ourURL)
+        ourProd.image = UIImage(data: data!)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: reloadSignalNotif), object: nil)
+    }
+}
+
+
 final class ProdDownloader {
     private var lastPageDownloaded:Int = 0
+    lazy var imgDownloadQueue = { () -> OperationQueue in
+        var queue = OperationQueue()
+        queue.name = "imageDownloadQueue"
+        queue.maxConcurrentOperationCount = 3
+        return queue
+    }
+    
     
     func downloadNextPage(compHandler: @escaping (Error?,[Product]) -> Void) {
         lastPageDownloaded += 1
@@ -54,15 +85,20 @@ final class ProdDownloader {
                             img: nil,
                             price: jp["price"] as! String)
             newProducts.append(p)
+            
             // grab the image
             let url = URL(string: jp["productImage"] as! String)
-            DispatchQueue.global(qos: .background).async {
+            let imgDown = ImgDownloader(prod:p, imgUrl:url!)
+            imgDown.queuePriority = .low
+            self.imgDownloadQueue().addOperation(imgDown)
+            
+            /*DispatchQueue.global(qos: .background).async {
                 let data = try? Data(contentsOf: url!)
                 p.image = UIImage(data: data!)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: reloadSignalNotif), object: nil)
-            }
+            } */
 
-            }
+        }
             //DispatchQueue.main.async {
         //}
         return newProducts
