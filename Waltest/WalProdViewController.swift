@@ -13,9 +13,13 @@ let reloadSignalNotif = "CollViewReloadNotif"
 final class WalProdViewController: UICollectionViewController {
     
     let ourProdServer = ProductServer()
+    let refresher = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.collectionView?.addSubview(self.refresher)
+        self.refresher.addTarget(self, action: #selector(doRefresh), for: .valueChanged)
         
         
         // set delegate for product server
@@ -29,6 +33,12 @@ final class WalProdViewController: UICollectionViewController {
                 self.collectionView?.reloadData()
             }
         }
+    }
+    
+    func doRefresh() {
+        ourProdServer.productArray.removeAll()
+        ourProdServer.redownload()
+        //self.collectionView?.reloadData()
     }
     
     func doCollectionViewReload() {
