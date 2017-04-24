@@ -2,6 +2,8 @@
 //  WalProdViewController.swift
 //  Waltest
 //
+//
+//
 //  Created by BjornC on 4/5/17.
 //  Copyright © 2017 bjorn. All rights reserved.
 //
@@ -38,7 +40,6 @@ final class WalProdViewController: UICollectionViewController {
     func doRefresh() {
         ourProdServer.productArray.removeAll()
         ourProdServer.redownload()
-        //self.collectionView?.reloadData()
     }
     
     func doCollectionViewReload() {
