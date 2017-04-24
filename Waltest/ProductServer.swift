@@ -32,7 +32,7 @@ let getMoreThreshold = 10
 
 final class ProductServer : NSObject, UICollectionViewDataSource {
     // not accessed directly so we can manage lazy loading
-    private var productArray:[Product] = []
+    var productArray:[Product] = []
     
     var numLoadedProducts: Int {
         get {
@@ -59,6 +59,28 @@ final class ProductServer : NSObject, UICollectionViewDataSource {
 
         }
     }
+    
+    func redownload() {
+        DispatchQueue.global(qos: .background).async {
+            let pd = ProdDownloader()
+            pd.downloadNextPage() { err, prods in
+                if err == nil {
+                    for (i,prod) in prods.enumerated() {
+                        prod.index = i
+                    }
+                    //dispatch
+                    //objc_sync_enter(self.productArray)
+                    self.productArray.append(contentsOf: prods)
+                    //objc_sync_exit(self.productArray)
+                    
+                }
+            }
+            
+        }
+
+    }
+    
+    
     // MARK: -
     // MARK: Product Data Methods
     
